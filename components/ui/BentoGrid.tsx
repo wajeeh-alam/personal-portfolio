@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils';
 import { BackgroundGradientAnimation } from './GradientBg';
 import animationData from '@/data/confetti.json';
 import MagicButton from '../MagicButton';
-import "@/globals.css";
 
 export const BentoGrid = ({
   className,
