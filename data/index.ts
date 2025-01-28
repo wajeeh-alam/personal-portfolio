@@ -116,7 +116,7 @@ export const workExperience = [
   },
   {
     id: 3,
-    title: 'Freelance App Dev Project',
+    title: 'Software Engineering Fellowship',
     desc: 'Fellowship with Headstarter.AI; received feedback from engineers in Google, Y Combinator, Stanford, etc, developed 5 A.I project applications',
     className: 'md:col-span-2',
     thumbnail: '/exp3.svg',
