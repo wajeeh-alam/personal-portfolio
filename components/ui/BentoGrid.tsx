@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { BackgroundGradientAnimation } from './GradientBg';
 import animationData from '@/data/confetti.json';
 import MagicButton from '../MagicButton';
+import "@/globals.css";
 
 export const BentoGrid = ({
   className,
@@ -220,17 +221,3 @@ export const ScrollingContainer = ({ items }: { items: string[] }) => {
     </div>
   );
 };
-
-const styles = `
-@keyframes vertical-scroll {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
-}
-.animate-vertical-scroll {
-  animation: vertical-scroll 8s linear infinite;
-}
-`;
-const styleSheet = document.createElement('style');
-styleSheet.type = 'text/css';
-styleSheet.innerText = styles;
-document.head.appendChild(styleSheet);
