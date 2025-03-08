@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Spotlight } from './ui/Spotlight';
 import { TextGenerateEffect } from './ui/TextGenerateEffect';
 
 const Hero = () => {
+  const [currentTime, setCurrentTime] = useState('');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const formattedTime = new Date()
+        .toLocaleTimeString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: true,
+        })
+        .replace(/([APM])/g, '$1');
+      setCurrentTime(formattedTime);
+    };
+
+    updateTime(); // Set initial time
+    const interval = setInterval(updateTime, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="relative flex flex-col items-center justify-center h-screen bg-darkBlue text-white">
-      {/* Spotlight effects */} {/* Left Side (mix of colours!) */}
+      {/* Spotlight effects */}
       <Spotlight
         className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
         fill="white"
@@ -16,10 +36,12 @@ const Hero = () => {
         fill="red"
       />
       <Spotlight className="top-28 left-80 h-[80vh] w-[50vw]" fill="green" />
+
       {/* Nav Bar */}
       <div className="absolute top-8 w-full flex justify-between items-center px-12">
         <h1 className="text-lg font-thin">WAJEEH ALAM</h1>
       </div>
+
       {/* Main Heading */}
       <div className="text-center">
         <h1 className="text-4xl sm:text-5xl font-extrabold">
@@ -30,14 +52,15 @@ const Hero = () => {
           words="Engineering Ideas Into Code"
         />
       </div>
+
       {/* Buttons / Status */}
       <div className="mt-4 flex items-center gap-4">
         <div
           className="px-4 py-2 rounded-lg flex items-center gap-2"
           style={{ background: 'linear-gradient(90deg, #161A31, #06091F' }}
         >
-          <span className="w-2 h-2 bg-red-500 rounded-full"></span>
-          <p>Offline</p>
+          <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+          <p>Online</p>
         </div>
         <button
           className="inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 
@@ -51,7 +74,7 @@ const Hero = () => {
           style={{ background: 'linear-gradient(90deg, #161A31, #06091F' }}
         >
           <span className="text-sm">🕒</span>
-          <p>7:48 PM</p>
+          <p suppressHydrationWarning>{currentTime}</p>
         </div>
       </div>
     </div>

@@ -18,16 +18,12 @@ const Projects = () => {
             className="lg:min-h-[32.5rem] h-[25rem] flex items-center justify-center sm:w-96 w-[80vw]"
             key={item.id}
           >
-            <PinContainer
-              href="https://twitter.com/mannupaaji"
-            >
+            <PinContainer href="https://www.linkedin.com/in/wajeeh-alam-9442b82bb/">
               <div className="relative flex items-center justify-center sm:w-96 w-[80vw] overflow-hidden h-[20vh] lg:h-[30vh] mb-10">
                 <div
                   className="relative w-full h-full overflow-hidden lg:rounded-3xl"
                   style={{ backgroundColor: '#13162D' }}
-                >
-                  <img src="/bg.png" alt="bgimg" />
-                </div>
+                ></div>
                 <img
                   src={item.img}
                   alt="cover"
@@ -65,9 +61,16 @@ const Projects = () => {
                 </div>
 
                 <div className="flex justify-center items-center">
-                  <p className="flex lg:text-xl md:text-xs text-sm text-purple">
-                    View Project
-                  </p>
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center lg:text-xl md:text-xs text-sm text-purple hover:underline transition-colors duration-300"
+                  >
+                    <p className="flex lg:text-xl md:text-xs text-sm text-purple">
+                      View Project
+                    </p>
+                  </a>
                   <FaLocationArrow className="ms-3" color="#CBACF9" />
                 </div>
               </div>
