@@ -1,0 +1,232 @@
+/**
+ * Global stylesheet: Tailwind layers, the CSS custom properties that mirror
+ * `src/theme/tokens.ts`, and the handful of effects that Tailwind utilities
+ * cannot express (gradient-clipped lettering, the sparkle field, glow layers).
+ *
+ * Three rules hold throughout this file:
+ *   1. Every `@keyframes` block declares `transform` and `opacity` only, so all
+ *      continuous animation stays on the compositor.
+ *   2. Hero sky and platform-green values are reachable only through `.hero-sky`
+ *      and the divider accents, never a readable surface.
+ *   3. Component classes sit at the top level rather than inside
+ *      `@layer components`, because layer contents are treated as purge
+ *      candidates and these rules must survive regardless of scan results.
+ *
+ * Base styles target small screens; widening is done with Tailwind breakpoint
+ * modifiers in the components, not with min-width blocks here.
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Custom properties mirror the token registry so plain CSS below can read the
+   * same values Tailwind reads. `tokens.ts` remains the source of truth; these
+   * are its CSS-side projection.
+   */
+  :root {
+    /* Decorative palette */
+    --magenta: #e91e8c;
+    --blue: #29b6f6;
+    --gold: #ffd54f;
+    --grass: #4caf50;
+    --grass-light: #66bb6a;
+    --outline: #000000;
+
+    /* Content section surfaces */
+    --surface-base: #0d0a12;
+    --surface-panel: #171122;
+
+    /* Body and metadata text */
+    --ink-primary: #f5f3f7;
+    --ink-muted: #c9c2d4;
+
+    /* Hero lettering hues; scoped to `.hero-name`. */
+    --lettering-yellow: #ffd54f;
+    --lettering-red: #e5342b;
+  }
+
+  /**
+   * `overflow-x-hidden` is a guard against a stray wide child, not the
+   * mechanism: no element is allowed a fixed width above 320px minus page
+   * padding.
+   */
+  html {
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+    background-color: var(--surface-base);
+    color: var(--ink-primary);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/**
+ * Hero sky. The literal stops are declared first as the fallback for engines
+ * without `color-mix`; both are tints/shades of `--magenta`, so no new hue enters
+ * the palette. Hero-scoped only.
+ */
+.hero-sky {
+  /* literal fallback: precomputed tint and shade of #e91e8c */
+  background-image: linear-gradient(180deg, #f26bb0 0%, #e91e8c 55%, #b6166d 100%);
+  background-image: linear-gradient(
+    180deg,
+    color-mix(in oklab, var(--magenta) 62%, white) 0%,
+    var(--magenta) 55%,
+    color-mix(in oklab, var(--magenta) 78%, black) 100%
+  );
+}
+
+/**
+ * Hero name: gradient fill, black outline, and drop shadow on one text node.
+ * `background-clip: text` requires `color: transparent`, which would swallow a
+ * stroke painted on the same element, so the outline is painted on a `::before`
+ * layer sitting behind the gradient layer.
+ */
+.hero-name {
+  position: relative;
+  isolation: isolate;
+  color: var(--lettering-yellow); /* fallback fill without background-clip */
+  filter: drop-shadow(0 6px 0 rgb(0 0 0 / 0.55));
+}
+
+.hero-name::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  color: transparent;
+  -webkit-text-stroke: 8px #000;
+  paint-order: stroke fill; /* honored where supported */
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .hero-name {
+    background-image: linear-gradient(
+      180deg,
+      var(--lettering-yellow) 0%,
+      var(--lettering-red) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/**
+ * Sparkle field: composited spans, zero rAF callbacks, zero scroll listeners.
+ * Per-particle layout arrives as custom properties from `SparkleLayer.tsx`.
+ */
+.sparkle-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sparkle {
+  position: absolute;
+  left: var(--sparkle-x, 50%);
+  top: var(--sparkle-y, 50%);
+  width: 3px;
+  height: 3px;
+  background: var(--gold);
+  will-change: transform, opacity;
+  animation:
+    sparkle-drift var(--sparkle-duration, 4200ms) linear var(--sparkle-delay, 0ms) infinite,
+    sparkle-twinkle 1.9s ease-in-out var(--sparkle-delay, 0ms) infinite alternate;
+}
+
+/**
+ * Glow layers for the orb button and the project cards. The glow is a
+ * pre-composited pseudo-element whose `opacity` is transitioned; `box-shadow` is
+ * deliberately never animated, which keeps the interaction on the compositor.
+ */
+.orb-glow,
+.card-glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.orb-glow::after,
+.card-glow::after {
+  content: '';
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 200ms ease-out;
+}
+
+.orb-glow::after {
+  inset: -8px;
+  background: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--blue) 70%, white) 0%,
+    transparent 70%
+  );
+}
+
+.card-glow::after {
+  inset: -2px;
+  background: radial-gradient(circle at 50% 0%, var(--blue) 0%, transparent 75%);
+}
+
+.orb-glow:hover::after,
+.orb-glow:focus-visible::after,
+.card-glow:hover::after,
+.card-glow:focus-within::after {
+  opacity: 0.85;
+}
+
+/* Sparkle drift: transform only, so reduced motion drops it wholesale. */
+@keyframes sparkle-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(var(--sparkle-scale, 1));
+  }
+  to {
+    transform: translate3d(-18px, 26px, 0) scale(var(--sparkle-scale, 1));
+  }
+}
+
+/* Twinkle: opacity only, so it survives reduced motion. */
+@keyframes sparkle-twinkle {
+  from {
+    opacity: 0.15;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Orb button pulse: transform only. */
+@keyframes orb-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/**
+ * Under reduced motion every transform animation is dropped and
+ * `sparkle-twinkle` is retained. A media query re-evaluates on preference change
+ * by definition, so the switch is live mid-session.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .sparkle {
+    animation: sparkle-twinkle 2.4s ease-in-out var(--sparkle-delay, 0ms) infinite alternate;
+  }
+
+  .animate-sparkle-drift,
+  .animate-orb-pulse {
+    animation: none;
+  }
+}
