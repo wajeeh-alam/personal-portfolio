@@ -1,0 +1,38 @@
+{
+  "name": "dbz-pixel-portfolio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Single-page pixel-art themed portfolio for Wajeeh Alam (React 18 + Vite + Tailwind CSS + Framer Motion).",
+  "scripts": {
+    "data": "tsx scripts/fetch-github.ts",
+    "dev": "npm run data && vite",
+    "build": "npm run data && tsc --noEmit && vite build",
+    "typecheck": "npm run data && tsc --noEmit",
+    "test": "npm run data && vitest --run",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "framer-motion": "11.18.2",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "6.6.3",
+    "@testing-library/react": "14.3.1",
+    "@testing-library/user-event": "14.5.2",
+    "@types/node": "22.10.2",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "@vitejs/plugin-react": "4.3.4",
+    "autoprefixer": "10.4.20",
+    "fast-check": "3.23.2",
+    "jsdom": "25.0.1",
+    "postcss": "8.4.49",
+    "tailwindcss": "3.4.17",
+    "tsx": "4.19.2",
+    "typescript": "5.6.3",
+    "vite": "5.4.11",
+    "vitest": "2.1.8"
+  }
+}

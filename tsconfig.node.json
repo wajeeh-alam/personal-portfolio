@@ -1,0 +1,32 @@
+{
+  /* Node-side files: the build-time GitHub script and the tool configs. */
+  "compilerOptions": {
+    /* Language and emit */
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "noEmit": true,
+
+    /* Module interop */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": false,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+
+    /* Strictness (Requirement 18.5) */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Node globals only */
+    "types": ["node"]
+  },
+  "include": ["scripts/**/*.ts", "vite.config.ts", "tailwind.config.ts", "postcss.config.js"]
+}
