@@ -9,22 +9,67 @@ type SectionContentProps = {
 
 export function SectionContent({ section }: SectionContentProps) {
   const [isInitialLoad, setIsInitialLoad] = useState(true)
-  const [radarLikes, setRadarLikes] = useState(() => {
-    const savedLikes = window.localStorage.getItem('portfolio-radar-likes')
-    return savedLikes ? Number(savedLikes) || 0 : 0
-  })
+  const [radarLikes, setRadarLikes] = useState<number | null>(null)
+  const [likeError, setLikeError] = useState('')
+
+  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+  const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
 
   useEffect(() => {
     const timer = window.setTimeout(() => setIsInitialLoad(false), 1850)
     return () => window.clearTimeout(timer)
   }, [])
 
-  const addRadarLike = () => {
-    setRadarLikes((current) => {
-      const next = current + 1
-      window.localStorage.setItem('portfolio-radar-likes', String(next))
-      return next
-    })
+  useEffect(() => {
+    if (!supabaseUrl || !supabaseKey) return
+
+    const loadLikes = async () => {
+      try {
+        const response = await fetch(`${supabaseUrl}/rest/v1/page_likes?slug=eq.portfolio&select=like_count&limit=1`, {
+          headers: {
+            apikey: supabaseKey,
+            Authorization: `Bearer ${supabaseKey}`,
+          },
+        })
+        if (!response.ok) return
+
+        const rows = await response.json() as Array<{ like_count: number }>
+        setRadarLikes((current) => current === null ? rows[0]?.like_count ?? 0 : Math.max(current, rows[0]?.like_count ?? 0))
+      } catch {
+        // The button reports a clear error if the visitor tries to like while offline.
+      }
+    }
+
+    void loadLikes()
+  }, [supabaseKey, supabaseUrl])
+
+  const addRadarLike = async () => {
+    if (!supabaseUrl || !supabaseKey) {
+      setLikeError('Likes are not connected yet. Restart the local dev server and try again.')
+      return
+    }
+
+    setLikeError('')
+    try {
+      const response = await fetch(`${supabaseUrl}/rest/v1/rpc/increment_portfolio_likes`, {
+        body: JSON.stringify({}),
+        headers: {
+          apikey: supabaseKey,
+          Authorization: `Bearer ${supabaseKey}`,
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      })
+      if (!response.ok) {
+        setLikeError('Could not save that like. Please try again.')
+        return
+      }
+
+      const updatedLikes = await response.json() as number
+      setRadarLikes((current) => current === null ? updatedLikes : Math.max(current, updatedLikes))
+    } catch {
+      setLikeError('Could not reach the likes service. Please try again.')
+    }
   }
 
   return (
@@ -82,7 +127,7 @@ export function SectionContent({ section }: SectionContentProps) {
                 >Seeking Summer 2027 Internship Opportunities</motion.p>
                 <motion.button
                   animate={{ opacity: 1, y: 0 }}
-                  aria-label={`Like Wajeeh's portfolio. ${radarLikes} likes so far.`}
+                  aria-label={`Like Wajeeh's portfolio. ${radarLikes ?? 'Loading'} likes so far.`}
                   className="radar-like-button"
                   initial={{ opacity: 0, y: 8 }}
                   onClick={addRadarLike}
@@ -91,8 +136,9 @@ export function SectionContent({ section }: SectionContentProps) {
                 >
                   <img alt="" aria-hidden="true" src={radar} />
                   <span>Like my portfolio?</span>
-                  <strong>{radarLikes}</strong>
+                  <strong>{radarLikes ?? '…'}</strong>
                 </motion.button>
+                {likeError && <p className="like-error" role="alert">{likeError}</p>}
               </div>
             </>
           ) : section.id === 'experience' ? (
@@ -101,7 +147,7 @@ export function SectionContent({ section }: SectionContentProps) {
               <motion.h1 animate={{ opacity: 1, y: 0 }} id={`${section.id}-title`} initial={{ opacity: 0, y: 7 }} transition={{ delay: 0.18, duration: 0.62, ease: 'easeOut' }}>Experience</motion.h1>
               <motion.ol animate={{ opacity: 1, y: 0 }} className="experience-timeline" initial={{ opacity: 0, y: 8 }} transition={{ delay: 0.36, duration: 0.58, ease: 'easeOut' }}>
                 <li><time>JUL 2026 — PRESENT</time><strong>Founding Engineer · Oro</strong></li>
-                <li><time>JUN — AUG 2025 · JUN — AUG 2026</time><strong>Senior Coding Instructor · UofT</strong></li>
+                <li><time>JUN 2025 — AUG 2026</time><strong>Senior Coding Instructor · UofT</strong></li>
                 <li><time>DEC 2024 — MAR 2025</time><strong>Lead Web Developer · SproutHacks</strong></li>
                 <li><time>JUN 2024 — SEP 2024</time><strong>Machine Learning Intern · STEMAway</strong></li>
               </motion.ol>

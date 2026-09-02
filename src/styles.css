@@ -88,10 +88,11 @@ button { font: inherit; }
 }
 
 .github-history.initial-about-load { animation: contribution-trail .92s cubic-bezier(.2, .72, .2, 1) 1.72s both; }
-.about-cta { margin-top: 2.55rem; max-width: 28rem; }
+.about-cta { margin-top: 3.55rem; max-width: 28rem; }
 .internship-message { color: #063e5f; font-size: clamp(.82rem, 1.1vw, .95rem); font-weight: 850; letter-spacing: .015em; margin: 0 0 .65rem; }
 .radar-like-button { align-items: center; background: rgba(227, 251, 255, .32); border: 1px solid rgba(236, 253, 255, .7); box-shadow: 0 .55rem 1.3rem rgba(4, 87, 111, .1); color: #063e5f; cursor: pointer; display: inline-flex; font-size: .84rem; font-weight: 800; gap: .45rem; padding: .38rem .62rem .38rem .42rem; transition: transform .18s ease, background .18s ease; }
 .radar-like-button:hover { background: rgba(248, 254, 255, .58); transform: translateY(-2px); }
+.like-error { color: #8d2626; font-size: .72rem; font-weight: 700; margin: .45rem 0 0; }
 .radar-like-button img { height: 2rem; image-rendering: pixelated; width: 2rem; }
 .radar-like-button strong { background: #063e5f; border-radius: 999px; color: white; font-size: .72rem; min-width: 1.5rem; padding: .22rem .4rem; }
 .experience-timeline { border-left: 2px solid rgba(236, 253, 255, .7); display: grid; gap: .9rem; list-style: none; margin: 1.5rem 0 0 .35rem; max-width: 31rem; padding: 0 0 0 1.25rem; }
