@@ -6,7 +6,7 @@ import skyLine from '../../assets/bg-graphics/squiggly-line-sky-drawing.png'
 import star from '../../assets/bg-graphics/star.png'
 import sun from '../../assets/bg-graphics/Sun.png'
 import goku from '../../assets/images/Goku_SSJ_Drawing.png'
-import nimbus from '../../assets/images/Nimbus Cloud Pixel Art.png'
+import nimbus from '../../assets/images/flying_nimbus.png'
 
 type SceneProps = {
   activeIndex: number

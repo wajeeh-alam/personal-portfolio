@@ -69,6 +69,15 @@ button { font: inherit; }
 
 .about-highlights span { display: block; }
 
+.about-highlights a {
+  color: inherit;
+  text-decoration-color: rgba(6, 62, 95, .38);
+  text-decoration-thickness: .08em;
+  text-underline-offset: .14em;
+}
+
+.about-highlights a:hover { color: #035276; }
+
 .github-history {
   animation: contribution-trail .92s cubic-bezier(.2, .72, .2, 1) 1.72s both;
   background: rgba(227, 251, 255, .28);
@@ -118,30 +127,37 @@ h1 {
   max-width: 29rem;
 }
 
-.contribution-placeholder {
-  border: 1px solid rgba(255,255,255,.44);
-  color: rgba(4, 75, 98, .74);
-  font-size: .68rem;
-  margin-top: 1.5rem;
-  max-width: 23rem;
-  padding: .75rem;
-}
-
-.contribution-grid {
+.impact-metrics {
   display: grid;
-  gap: 3px;
-  grid-template-columns: repeat(7, 1fr);
-  margin-top: .55rem;
+  gap: .65rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 1.5rem;
+  max-width: 27rem;
 }
 
-.contribution-grid i {
-  aspect-ratio: 1;
-  background: hsl(148 46% calc(72% - (var(--shade, 0) * 10%)));
+.impact-metrics div {
+  background: rgba(225, 249, 255, .24);
+  border: 1px solid rgba(255, 255, 255, .46);
+  box-shadow: 0 .55rem 1.3rem rgba(4, 87, 111, .07);
+  min-height: 5.2rem;
+  padding: .75rem .85rem;
 }
 
-.contribution-grid i:nth-child(3n) { --shade: 2; }
-.contribution-grid i:nth-child(4n) { --shade: 3; }
-.contribution-grid i:nth-child(7n) { --shade: 1; }
+.impact-metrics strong,
+.impact-metrics span { display: block; }
+
+.impact-metrics strong {
+  color: #063e5f;
+  font-size: clamp(1.25rem, 2vw, 1.8rem);
+  line-height: 1;
+}
+
+.impact-metrics span {
+  color: rgba(4, 56, 82, .76);
+  font-size: .74rem;
+  font-weight: 700;
+  margin-top: .45rem;
+}
 
 .scene {
   align-self: stretch;
@@ -314,6 +330,7 @@ h1 {
 }
 
 .ball-tooltip {
+  animation: tooltip-unlock 0s linear 2.72s forwards;
   background: rgba(2, 67, 96, .78);
   border-radius: 2rem;
   color: white;
@@ -326,11 +343,20 @@ h1 {
   top: 100%;
   transform: translateX(-50%) translateY(-.2rem);
   transition: opacity .16s ease, transform .16s ease;
+  visibility: hidden;
   white-space: nowrap;
 }
 
-.dragon-ball-button:hover .ball-tooltip,
-.dragon-ball-button:focus-visible .ball-tooltip { opacity: 1; transform: translateX(-50%) translateY(.15rem); }
+@keyframes tooltip-unlock {
+  to { visibility: visible; }
+}
+
+.dragon-ball-button:hover .ball-tooltip { opacity: 1; transform: translateX(-50%) translateY(.15rem); }
+
+.dragon-ball-button:not([aria-pressed="true"]) .ball-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(.15rem);
+}
 
 .scene-arrows { inset: 0; pointer-events: none; position: absolute; z-index: 5; }
 
@@ -395,7 +421,7 @@ h1 {
 
 .character-art {
   align-items: center;
-  animation: scene-fly-in 1.15s cubic-bezier(.18, .78, .28, 1) both;
+  animation: scene-fly-in 1.15s cubic-bezier(.22, .75, .25, 1) both;
   bottom: -2%;
   display: flex;
   flex-direction: column;
@@ -412,13 +438,12 @@ h1 {
   width: 53%;
 }
 
-.nimbus-art { display: block; margin-top: -25%; transform: translateX(-18%); width: 100%; }
+.nimbus-art { display: block; margin-top: -25%; transform: translateX(-10%); width: 100%; }
 
 @keyframes scene-fly-in {
-  0% { opacity: 0; transform: translateX(calc(-50% - 105vw)) translateY(1.75rem); }
-  58% { opacity: 1; }
-  82% { transform: translateX(calc(-50% + 1.25rem)) translateY(-.35rem); }
-  100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  0% { opacity: 0; transform: translateX(calc(-50% - 105vw)); }
+  18% { opacity: 1; }
+  100% { opacity: 1; transform: translateX(-50%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -426,6 +451,7 @@ h1 {
   .dragon-ball-button,
   .github-history,
   .portfolio-name { animation: none; }
+  .ball-tooltip { animation: none; visibility: visible; }
 }
 
 .scene-counter { bottom: 8%; color: rgba(255,255,255,.84); font-size: .72rem; font-weight: 700; margin: 0; position: absolute; right: 7%; z-index: 3; }

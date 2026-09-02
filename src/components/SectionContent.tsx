@@ -5,12 +5,6 @@ type SectionContentProps = {
   section: PortfolioSection
 }
 
-const aboutHighlights = [
-  'UWaterloo CS [1A]',
-  'Founding Engineer @ Oro',
-  '1.8k+ followers (@wajeehalam._)',
-]
-
 export function SectionContent({ section }: SectionContentProps) {
   return (
     <section aria-labelledby={`${section.id}-title`} className="section-content">
@@ -23,15 +17,32 @@ export function SectionContent({ section }: SectionContentProps) {
         >
           {section.id === 'about' ? (
             <>
+              <motion.p
+                animate={{ opacity: 1, y: 0 }}
+                className="section-eyebrow"
+                initial={{ opacity: 0, y: -5 }}
+                transition={{ delay: 1.18, duration: 0.55, ease: 'easeOut' }}
+              >{section.eyebrow}</motion.p>
               <h1 className="about-highlights" id={`${section.id}-title`}>
-                {aboutHighlights.map((highlight, index) => (
-                  <motion.span
-                    animate={{ opacity: 1, y: 0 }}
-                    initial={{ opacity: 0, y: 8 }}
-                    key={highlight}
-                    transition={{ delay: 1.3 + index * 0.18, duration: 0.58, ease: 'easeOut' }}
-                  >{highlight}</motion.span>
-                ))}
+                <motion.span
+                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 8 }}
+                  transition={{ delay: 1.3, duration: 0.58, ease: 'easeOut' }}
+                >UWaterloo CS [1A]</motion.span>
+                <motion.span
+                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 8 }}
+                  transition={{ delay: 1.48, duration: 0.58, ease: 'easeOut' }}
+                >Founding Engineer @ Oro</motion.span>
+                <motion.span
+                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 8 }}
+                  transition={{ delay: 1.66, duration: 0.58, ease: 'easeOut' }}
+                >
+                  1.8k+ followers (
+                  <a href="https://www.instagram.com/wajeehalam._/" rel="noreferrer" target="_blank">@wajeehalam._</a>
+                  )
+                </motion.span>
               </h1>
               <div aria-label="GitHub contribution history" className="github-history">
                 <img
@@ -67,15 +78,15 @@ export function SectionContent({ section }: SectionContentProps) {
           {section.id === 'impact' && (
             <motion.div
               animate={{ opacity: 1, y: 0 }}
-              aria-label="Contribution activity placeholder"
-              className="contribution-placeholder"
+              aria-label="Impact metrics"
+              className="impact-metrics"
               initial={{ opacity: 0, y: 8 }}
               transition={{ delay: 0.54, duration: 0.52, ease: 'easeOut' }}
             >
-              <span>Contribution activity</span>
-              <div className="contribution-grid">
-                {Array.from({ length: 35 }, (_, index) => <i key={index} />)}
-              </div>
+              <div><strong>300+</strong><span>attendee Hackathon organized</span></div>
+              <div><strong>3</strong><span>software engineer internships</span></div>
+              <div><strong>~100k+</strong><span>in scholarships</span></div>
+              <div><strong>1000+</strong><span>hours coding</span></div>
             </motion.div>
           )}
         </motion.div>

@@ -25,8 +25,8 @@ export const sections: PortfolioSection[] = [
     id: 'impact',
     label: 'Impact',
     eyebrow: '03 / IMPACT',
-    title: 'Progress, contributions, and outcomes.',
-    description: 'GitHub activity and impact metrics are intentionally placeholder content for this MVP.',
+    title: 'Impact, measured in people and outcomes.',
+    description: 'From teaching code to shipping live products, I focus on work that makes a clear, measurable difference.',
   },
   {
     id: 'projects',
