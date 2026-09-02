@@ -1,6 +1,5 @@
 import arrowLeft from '../../assets/images/Arrow Left.svg'
 import arrowRight from '../../assets/images/Arrow Right.svg'
-import navigationDot from '../../assets/images/Dot Between Arrows.svg'
 
 type ArrowsProps = {
   onNext: () => void
@@ -16,7 +15,6 @@ export function Arrows({ onNext, onPrevious }: ArrowsProps) {
       <button aria-label="Next section" className="arrow-button arrow-button-right" onClick={onNext} type="button">
         <img alt="" aria-hidden="true" src={arrowRight} />
       </button>
-      <img alt="" aria-hidden="true" className="arrow-dot" src={navigationDot} />
     </div>
   )
 }
