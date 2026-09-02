@@ -20,6 +20,32 @@ button { font: inherit; }
   min-height: 100vh;
   overflow: hidden;
   padding: clamp(1.5rem, 4vw, 4.75rem);
+  position: relative;
+}
+
+.portfolio-name {
+  animation: name-reveal 1.05s cubic-bezier(.2, .72, .2, 1) .32s both;
+  color: #beefff;
+  filter: drop-shadow(0 .8rem .7rem rgba(2, 48, 76, .28));
+  font-size: clamp(1.8rem, 2.8vw, 3rem);
+  font-weight: 950;
+  left: clamp(2.5rem, 4.5vw, 5.25rem);
+  letter-spacing: .08em;
+  line-height: 1;
+  position: absolute;
+  text-shadow:
+    1px 1px 0 #58b9d3,
+    2px 2px 0 #3c98b8,
+    3px 3px 0 #247999,
+    4px 4px 0 #0b5677,
+    0 10px 18px rgba(1, 47, 73, .34);
+  top: clamp(1.5rem, 3vw, 3rem);
+  z-index: 6;
+}
+
+@keyframes name-reveal {
+  from { opacity: 0; transform: translateY(-.65rem) scale(.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .section-content {
@@ -125,6 +151,78 @@ h1 {
     rotate(calc(180deg - var(--ball-slot) * 30deg));
   transition: transform .48s cubic-bezier(.2, .75, .2, 1);
   width: 4.5rem;
+}
+
+.dragon-ball-button.ball-wrap-next {
+  animation: ball-transport-next .68s ease-in-out both;
+  z-index: 3;
+}
+
+.dragon-ball-button.ball-wrap-previous {
+  animation: ball-transport-previous .38s ease-in-out both;
+  z-index: 3;
+}
+
+@keyframes ball-transport-next {
+  0% {
+    filter: brightness(1);
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-180deg) translateX(var(--orbit-radius)) rotate(180deg) scale(1);
+  }
+  38% {
+    filter: brightness(2.4) saturate(.7) blur(1px) drop-shadow(0 0 10px #fff8ac);
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-180deg) translateX(var(--orbit-radius)) rotate(180deg) scale(.08);
+  }
+  49% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-180deg) translateX(var(--orbit-radius)) rotate(180deg) scale(.08);
+  }
+  50% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg) scale(.08);
+  }
+  72% {
+    filter: brightness(2.2) saturate(.8) drop-shadow(0 0 13px #fff8ac);
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg) scale(1.14);
+  }
+  100% {
+    filter: brightness(1);
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes ball-transport-previous {
+  0% {
+    filter: brightness(1);
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg) scale(1);
+  }
+  38% {
+    filter: brightness(2.4) saturate(.7) blur(1px) drop-shadow(0 0 10px #fff8ac);
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg) scale(.08);
+  }
+  49% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg) scale(.08);
+  }
+  50% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-180deg) translateX(var(--orbit-radius)) rotate(180deg) scale(.08);
+  }
+  72% {
+    filter: brightness(2.2) saturate(.8) drop-shadow(0 0 13px #fff8ac);
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-180deg) translateX(var(--orbit-radius)) rotate(180deg) scale(1.14);
+  }
+  100% {
+    filter: brightness(1);
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(-180deg) translateX(var(--orbit-radius)) rotate(180deg) scale(1);
+  }
 }
 
 .dragon-ball {
@@ -299,7 +397,9 @@ h1 {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .character-art { animation: none; }
+  .character-art,
+  .dragon-ball-button,
+  .portfolio-name { animation: none; }
 }
 
 .scene-counter { bottom: 8%; color: rgba(255,255,255,.84); font-size: .72rem; font-weight: 700; margin: 0; position: absolute; right: 7%; z-index: 3; }
@@ -316,7 +416,8 @@ button:focus-visible { outline: 3px solid white; outline-offset: 3px; }
 
 @media (max-width: 860px) {
   .portfolio-shell { display: flex; flex-direction: column; gap: 1rem; overflow: clip; padding: 1.4rem 1rem 2.5rem; }
-  .section-content { align-self: stretch; max-width: 38rem; padding: 0; }
+  .section-content { align-self: stretch; max-width: 38rem; padding: 3.5rem 0 0; }
+  .portfolio-name { left: 1rem; top: 1.25rem; }
   .section-copy { min-height: 0; }
   .scene { align-self: stretch; min-height: 520px; width: 100%; }
   .orbit { --orbit-radius: min(32vw, 13rem); left: 54%; top: 57%; }

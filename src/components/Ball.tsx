@@ -4,6 +4,7 @@ type BallProps = {
   index: number
   label: string
   isActive: boolean
+  navigationDirection: 0 | 1 | -1
   onClick: () => void
   slot: number
 }
@@ -18,14 +19,19 @@ const starPositions: Record<number, Array<[number, number]>> = {
   7: [[30, 23], [70, 23], [30, 50], [50, 50], [70, 50], [30, 77], [70, 77]],
 }
 
-export function Ball({ index, label, isActive, onClick, slot }: BallProps) {
+export function Ball({ index, label, isActive, navigationDirection, onClick, slot }: BallProps) {
   const starCount = index + 1
+  const wrapClass = navigationDirection === 1 && slot === 6
+    ? ' ball-wrap-next'
+    : navigationDirection === -1 && slot === 0
+      ? ' ball-wrap-previous'
+      : ''
 
   return (
     <button
       aria-label={`Show ${label}`}
       aria-pressed={isActive}
-      className="dragon-ball-button"
+      className={`dragon-ball-button${wrapClass}`}
       onClick={onClick}
       style={{ '--ball-slot': slot } as CSSProperties}
       type="button"
