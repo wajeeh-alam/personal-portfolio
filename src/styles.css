@@ -101,6 +101,33 @@ button { font: inherit; }
 .experience-timeline time, .experience-timeline strong { display: block; }
 .experience-timeline time { color: rgba(4, 69, 94, .72); font-size: .68rem; font-weight: 850; letter-spacing: .08em; margin-bottom: .15rem; }
 .experience-timeline strong { color: #063e5f; font-size: clamp(.95rem, 1.2vw, 1.08rem); line-height: 1.2; }
+.resume-link { color: #063e5f; display: inline-block; font-size: .85rem; font-weight: 850; margin: 1.2rem 0 0 .35rem; text-underline-offset: .2em; }
+
+.impact-title,
+.compact-title { font-size: clamp(2rem, 3vw, 3.25rem); }
+
+.project-list,
+.skill-groups,
+.contact-cards { display: grid; gap: .65rem; margin-top: 1.25rem; max-width: 31rem; }
+
+.project-list article,
+.skill-groups div,
+.contact-cards a { background: rgba(227, 251, 255, .28); border: 1px solid rgba(236, 253, 255, .58); box-shadow: 0 .55rem 1.3rem rgba(4, 87, 111, .07); color: #063e5f; padding: .7rem .85rem; }
+.project-list h2,
+.skill-groups h2 { font-size: .95rem; line-height: 1.15; margin: 0; }
+.project-list h2 span { color: rgba(4, 69, 94, .72); font-size: .72rem; font-weight: 700; margin-left: .25rem; }
+.project-list p,
+.skill-groups p { color: rgba(4, 56, 82, .82); font-size: .76rem; line-height: 1.4; margin: .35rem 0; }
+.project-list small { color: rgba(4, 69, 94, .86); font-size: .65rem; font-weight: 800; line-height: 1.35; }
+.skill-groups h2 { font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; }
+.skill-groups p { font-size: .82rem; margin-bottom: 0; }
+.contact-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.contact-cards a { min-width: 0; text-decoration: none; transition: background .18s ease, transform .18s ease; }
+.contact-cards a:hover { background: rgba(248, 254, 255, .58); transform: translateY(-2px); }
+.contact-cards span,
+.contact-cards strong { display: block; }
+.contact-cards span { color: rgba(4, 69, 94, .72); font-size: .64rem; font-weight: 850; letter-spacing: .09em; margin-bottom: .28rem; text-transform: uppercase; }
+.contact-cards strong { font-size: .75rem; overflow-wrap: anywhere; }
 
 .github-chart-image {
   display: block;
@@ -518,4 +545,5 @@ button:focus-visible { outline: 3px solid white; outline-offset: 3px; }
   .scene-sky-line { left: 5%; width: 105%; }
   .arrow-button { top: 0; }
   h1 { font-size: 2.2rem; }
+  .contact-cards { grid-template-columns: 1fr; }
 }
