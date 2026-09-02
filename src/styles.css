@@ -79,7 +79,6 @@ button { font: inherit; }
 .about-highlights a:hover { color: #035276; }
 
 .github-history {
-  animation: contribution-trail .92s cubic-bezier(.2, .72, .2, 1) 1.72s both;
   background: rgba(227, 251, 255, .28);
   border: 1px solid rgba(236, 253, 255, .58);
   box-shadow: 0 .75rem 2rem rgba(4, 87, 111, .08);
@@ -87,6 +86,20 @@ button { font: inherit; }
   max-width: 28rem;
   padding: .55rem;
 }
+
+.github-history.initial-about-load { animation: contribution-trail .92s cubic-bezier(.2, .72, .2, 1) 1.72s both; }
+.about-cta { margin-top: 2.55rem; max-width: 28rem; }
+.internship-message { color: #063e5f; font-size: clamp(.82rem, 1.1vw, .95rem); font-weight: 850; letter-spacing: .015em; margin: 0 0 .65rem; }
+.radar-like-button { align-items: center; background: rgba(227, 251, 255, .32); border: 1px solid rgba(236, 253, 255, .7); box-shadow: 0 .55rem 1.3rem rgba(4, 87, 111, .1); color: #063e5f; cursor: pointer; display: inline-flex; font-size: .84rem; font-weight: 800; gap: .45rem; padding: .38rem .62rem .38rem .42rem; transition: transform .18s ease, background .18s ease; }
+.radar-like-button:hover { background: rgba(248, 254, 255, .58); transform: translateY(-2px); }
+.radar-like-button img { height: 2rem; image-rendering: pixelated; width: 2rem; }
+.radar-like-button strong { background: #063e5f; border-radius: 999px; color: white; font-size: .72rem; min-width: 1.5rem; padding: .22rem .4rem; }
+.experience-timeline { border-left: 2px solid rgba(236, 253, 255, .7); display: grid; gap: .9rem; list-style: none; margin: 1.5rem 0 0 .35rem; max-width: 31rem; padding: 0 0 0 1.25rem; }
+.experience-timeline li { position: relative; }
+.experience-timeline li::before { background: #f6c94b; border: 2px solid #b7761f; border-radius: 50%; content: ''; height: .62rem; left: calc(-1.25rem - .4rem); position: absolute; top: .18rem; width: .62rem; }
+.experience-timeline time, .experience-timeline strong { display: block; }
+.experience-timeline time { color: rgba(4, 69, 94, .72); font-size: .68rem; font-weight: 850; letter-spacing: .08em; margin-bottom: .15rem; }
+.experience-timeline strong { color: #063e5f; font-size: clamp(.95rem, 1.2vw, 1.08rem); line-height: 1.2; }
 
 .github-chart-image {
   display: block;
@@ -440,16 +453,30 @@ h1 {
 
 .nimbus-art { display: block; margin-top: -25%; transform: translateX(-10%); width: 100%; }
 
+.character-bob {
+  align-items: center;
+  animation: character-bob 4.2s ease-in-out 1.15s infinite;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 @keyframes scene-fly-in {
   0% { opacity: 0; transform: translateX(calc(-50% - 105vw)); }
   18% { opacity: 1; }
   100% { opacity: 1; transform: translateX(-50%); }
 }
 
+@keyframes character-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-.75rem); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .character-art,
+  .character-bob,
   .dragon-ball-button,
-  .github-history,
+  .github-history.initial-about-load,
   .portfolio-name { animation: none; }
   .ball-tooltip { animation: none; visibility: visible; }
 }

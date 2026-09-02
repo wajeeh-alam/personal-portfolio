@@ -29,8 +29,10 @@ export function Scene({ activeIndex, navigationDirection, onNext, onPrevious, on
       <Arrows onNext={onNext} onPrevious={onPrevious} />
       <Orbit activeIndex={activeIndex} navigationDirection={navigationDirection} onSelect={onSelect} sections={sections} />
       <div aria-label="Pixel art of Goku riding the Flying Nimbus" className="character-art" role="img">
-        <img alt="" className="goku-art" src={goku} />
-        <img alt="" className="nimbus-art" src={nimbus} />
+        <div className="character-bob">
+          <img alt="" className="goku-art" src={goku} />
+          <img alt="" className="nimbus-art" src={nimbus} />
+        </div>
       </div>
       <p className="scene-counter">{activeIndex + 1} / {sections.length}</p>
     </div>

@@ -19,14 +19,14 @@ export const sections: PortfolioSection[] = [
     label: 'Experience',
     eyebrow: '02 / EXPERIENCE',
     title: 'Selected roles and collaborations.',
-    description: 'A concise timeline of experience, responsibilities, and the teams I have worked with will appear here.',
+    description: 'A concise timeline of experience, responsibilities, and the teams I have worked with.',
   },
   {
     id: 'impact',
     label: 'Impact',
     eyebrow: '03 / IMPACT',
-    title: 'Impact, measured in people and outcomes.',
-    description: 'From teaching code to shipping live products, I focus on work that makes a clear, measurable difference.',
+    title: 'Impact, measured in outcomes.',
+    description: 'From teaching code to shipping live products, my work directly leads teams into success.',
   },
   {
     id: 'projects',
