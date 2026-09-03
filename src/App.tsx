@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import { Scene } from './components/Scene'
 import { SectionContent } from './components/SectionContent'
 import { sections } from './data/sections'
@@ -33,6 +34,7 @@ function App() {
         onSelect={selectSection}
         sections={sections}
       />
+      <Analytics />
     </main>
   )
 }
