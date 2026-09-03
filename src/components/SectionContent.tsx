@@ -170,9 +170,9 @@ export function SectionContent({ section }: SectionContentProps) {
               <motion.p animate={{ opacity: 1, y: 0 }} className="section-eyebrow" initial={{ opacity: 0, y: -5 }} transition={{ duration: 0.55, ease: 'easeOut' }}>{section.eyebrow}</motion.p>
               <motion.h1 animate={{ opacity: 1, y: 0 }} className="compact-title" id={`${section.id}-title`} initial={{ opacity: 0, y: 7 }} transition={{ delay: 0.18, duration: 0.62, ease: 'easeOut' }}>Things I’m building.</motion.h1>
               <motion.div animate={{ opacity: 1, y: 0 }} className="project-list" initial={{ opacity: 0, y: 8 }} transition={{ delay: 0.36, duration: 0.58, ease: 'easeOut' }}>
-                <article><h2>Oro <span>A.I. fashion stylist</span></h2><p>Personalized outfit discovery and styling with AI.</p><small>Python · Typescript · React Native · NodeJS · PostgreSQL · Supabase</small></article>
-                <article><h2>drawOff <span>scaling toward 1M+ users</span></h2><p>A real-time multiplayer drawing game with AI judging and live spectator voting.</p><small>React · TypeScript · Tailwind · Node.js · Socket.io</small></article>
-                <article><h2>StudyQuest <span>iOS</span></h2><p>A gamified study companion designed for focused learning.</p><small>React Native · Expo · Firebase</small></article>
+                <a aria-label="View Oro" href="https://www.buildingoro.ca/" rel="noreferrer" target="_blank"><article><h2>Oro <span>A.I. fashion stylist (2k+ downloads)</span><b aria-hidden="true">↗</b></h2><p>Personalized outfit discovery and styling with AI.</p><small>Python · Typescript · React Native · NodeJS · PostgreSQL · Supabase</small></article></a>
+                <a aria-label="View drawOff" href="https://drawoff.vercel.app/" rel="noreferrer" target="_blank"><article><h2>drawOff <span>scaling toward 1M+ users</span><b aria-hidden="true">↗</b></h2><p>A real-time multiplayer drawing game with AI judging and live spectator voting.</p><small>React · TypeScript · Tailwind · Node.js · Socket.io</small></article></a>
+                <a aria-label="View StudyQuest on GitHub" href="https://github.com/wajeeh-alam/studyquest" rel="noreferrer" target="_blank"><article><h2>StudyQuest <span>iOS</span><b aria-hidden="true">↗</b></h2><p>A gamified study companion designed for focused learning.</p><small>React Native · Expo · Firebase</small></article></a>
               </motion.div>
             </>
           ) : section.id === 'skills' ? (
@@ -191,10 +191,19 @@ export function SectionContent({ section }: SectionContentProps) {
               <motion.h1 animate={{ opacity: 1, y: 0 }} className="compact-title" id={`${section.id}-title`} initial={{ opacity: 0, y: 7 }} transition={{ delay: 0.18, duration: 0.62, ease: 'easeOut' }}>Let’s make something memorable.</motion.h1>
               <motion.nav animate={{ opacity: 1, y: 0 }} aria-label="Contact links" className="contact-cards" initial={{ opacity: 0, y: 8 }} transition={{ delay: 0.36, duration: 0.58, ease: 'easeOut' }}>
                 <a href="https://www.linkedin.com/in/wajeeh-alam" rel="noreferrer" target="_blank"><span>LinkedIn</span><strong>linkedin.com/in/wajeeh-alam</strong></a>
-                <a href="tel:+16472857970"><span>Phone</span><strong>647-285-7970</strong></a>
+                <a href="tel:+16472857970"><span>Phone</span><strong>+1 (647) 285-7970</strong></a>
                 <a href="mailto:w5alam@uwaterloo.ca"><span>Email</span><strong>w5alam@uwaterloo.ca</strong></a>
                 <a href="https://www.instagram.com/wajeehalam._/" rel="noreferrer" target="_blank"><span>Instagram</span><strong>@wajeehalam._</strong></a>
               </motion.nav>
+            </>
+          ) : section.id === 'awards-interests' ? (
+            <>
+              <motion.p animate={{ opacity: 1, y: 0 }} className="section-eyebrow" initial={{ opacity: 0, y: -5 }} transition={{ duration: 0.55, ease: 'easeOut' }}>{section.eyebrow}</motion.p>
+              <motion.h1 animate={{ opacity: 1, y: 0 }} className="compact-title" id={`${section.id}-title`} initial={{ opacity: 0, y: 7 }} transition={{ delay: 0.18, duration: 0.62, ease: 'easeOut' }}>Beyond the build.</motion.h1>
+              <motion.div animate={{ opacity: 1, y: 0 }} className="awards-interests" initial={{ opacity: 0, y: 8 }} transition={{ delay: 0.36, duration: 0.58, ease: 'easeOut' }}>
+                <div><h2>Awards</h2><ul><li>Top 4 / 60 · GenZCanHack</li><li>TDSSAA Regional Frisbee Champion</li><li>Queen’s Chancellor Scholarship · $48K+</li></ul></div>
+                <div><h2>Interests</h2><ul><li>Dragon Ball Z & anime</li><li>Pop & hip-hop music</li><li>Personal finance</li><li>Long walks</li></ul></div>
+              </motion.div>
             </>
           ) : (
             <>

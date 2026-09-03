@@ -7,6 +7,7 @@
 * { box-sizing: border-box; }
 
 html, body, #root { min-width: 320px; min-height: 100%; margin: 0; }
+html, body { overflow-x: hidden; }
 
 button { font: inherit; }
 
@@ -16,9 +17,9 @@ button { font: inherit; }
     linear-gradient(180deg, rgba(6, 149, 192, .18), rgba(142, 231, 244, .48)),
     #27b5d6;
   display: grid;
-  grid-template-columns: minmax(250px, .8fr) minmax(600px, 1.5fr);
-  min-height: 100vh;
-  overflow: hidden;
+  grid-template-columns: minmax(17rem, .8fr) minmax(0, 1.5fr);
+  min-height: 100dvh;
+  overflow-x: hidden;
   padding: clamp(1.5rem, 4vw, 4.75rem);
   position: relative;
 }
@@ -51,8 +52,10 @@ button { font: inherit; }
 .section-content {
   align-self: center;
   max-width: 30rem;
+  min-width: 0;
   padding: 1rem;
   position: relative;
+  width: 100%;
   z-index: 3;
 }
 
@@ -112,10 +115,15 @@ button { font: inherit; }
 
 .project-list article,
 .skill-groups div,
-.contact-cards a { background: rgba(227, 251, 255, .28); border: 1px solid rgba(236, 253, 255, .58); box-shadow: 0 .55rem 1.3rem rgba(4, 87, 111, .07); color: #063e5f; padding: .7rem .85rem; }
+.contact-cards a,
+.awards-interests > div { background: rgba(227, 251, 255, .28); border: 1px solid rgba(236, 253, 255, .58); box-shadow: 0 .55rem 1.3rem rgba(4, 87, 111, .07); color: #063e5f; padding: .7rem .85rem; }
+.project-list a { color: inherit; text-decoration: none; transition: transform .18s ease; }
+.project-list a:hover { transform: translateY(-2px); }
+.project-list a:hover article { background: rgba(248, 254, 255, .58); }
 .project-list h2,
 .skill-groups h2 { font-size: .95rem; line-height: 1.15; margin: 0; }
 .project-list h2 span { color: rgba(4, 69, 94, .72); font-size: .72rem; font-weight: 700; margin-left: .25rem; }
+.project-list h2 b { float: right; font-size: 1rem; }
 .project-list p,
 .skill-groups p { color: rgba(4, 56, 82, .82); font-size: .76rem; line-height: 1.4; margin: .35rem 0; }
 .project-list small { color: rgba(4, 69, 94, .86); font-size: .65rem; font-weight: 800; line-height: 1.35; }
@@ -128,6 +136,9 @@ button { font: inherit; }
 .contact-cards strong { display: block; }
 .contact-cards span { color: rgba(4, 69, 94, .72); font-size: .64rem; font-weight: 850; letter-spacing: .09em; margin-bottom: .28rem; text-transform: uppercase; }
 .contact-cards strong { font-size: .75rem; overflow-wrap: anywhere; }
+.awards-interests { display: grid; gap: .75rem; margin-top: 1.25rem; max-width: 31rem; }
+.awards-interests h2 { font-size: .72rem; letter-spacing: .1em; margin: 0 0 .45rem; text-transform: uppercase; }
+.awards-interests ul { color: rgba(4, 56, 82, .82); font-size: .82rem; line-height: 1.5; margin: 0; padding-left: 1.05rem; }
 
 .github-chart-image {
   display: block;
@@ -201,6 +212,7 @@ h1 {
 }
 
 .scene {
+  --scene-center: 51%;
   align-self: stretch;
   isolation: isolate;
   min-height: clamp(580px, 82vh, 760px);
@@ -211,7 +223,7 @@ h1 {
 .orbit {
   --orbit-radius: clamp(13rem, 19.5vw, 19rem);
   height: calc(var(--orbit-radius) * 2);
-  left: 51%;
+  left: var(--scene-center);
   position: absolute;
   top: 58%;
   transform: translate(-50%, -50%);
@@ -466,7 +478,7 @@ h1 {
   bottom: -2%;
   display: flex;
   flex-direction: column;
-  left: 51%;
+  left: var(--scene-center);
   position: absolute;
   transform: translateX(-50%);
   width: clamp(18rem, 27vw, 24rem);
@@ -479,7 +491,7 @@ h1 {
   width: 53%;
 }
 
-.nimbus-art { display: block; margin-top: -25%; transform: translateX(-10%); width: 100%; }
+.nimbus-art { display: block; margin-top: -25%; width: 100%; }
 
 .character-bob {
   align-items: center;
@@ -521,29 +533,58 @@ button:focus-visible { outline: 3px solid white; outline-offset: 3px; }
   .scene-counter { bottom: 2%; }
 }
 
-@media (max-width: 860px) {
-  .portfolio-shell { display: flex; flex-direction: column; gap: 1rem; overflow: clip; padding: 1.4rem 1rem 2.5rem; }
+@media (max-width: 1050px) {
+  .portfolio-shell { display: flex; flex-direction: column; gap: 1rem; overflow-x: hidden; padding: 1.4rem 1rem 2.5rem; }
   .section-content { align-self: stretch; max-width: 38rem; padding: 3.5rem 0 0; }
   .portfolio-name { left: 1rem; top: 1.25rem; }
   .section-copy { min-height: 0; }
-  .scene { align-self: stretch; min-height: 520px; width: 100%; }
-  .orbit { --orbit-radius: min(32vw, 13rem); left: 54%; top: 57%; }
-  .character-art { left: 54%; width: min(52vw, 20rem); }
+  .scene { --scene-center: 50%; align-self: stretch; min-height: 520px; width: 100%; }
+  .orbit { --orbit-radius: min(32vw, 13rem); top: 57%; }
+  .character-art { width: min(52vw, 20rem); }
   .scene-sun { right: -2%; top: 1%; }
   .arrow-button-left { left: 12%; }
   .arrow-button-right { right: 12%; }
 }
 
+@media (max-width: 680px) {
+  .about-cta { margin-top: 2.25rem; }
+  .impact-metrics { grid-template-columns: 1fr; max-width: 100%; }
+  .impact-metrics div { min-height: 4.4rem; }
+  .contact-cards { grid-template-columns: 1fr; }
+  .project-list,
+  .skill-groups,
+  .awards-interests { max-width: 100%; }
+}
+
 @media (max-width: 520px) {
-  .scene { min-height: 470px; }
-  .orbit { --orbit-radius: min(35vw, 10rem); left: 54%; top: 58%; }
+  .portfolio-shell { padding-inline: .85rem; }
+  .section-content { padding-top: 3.1rem; }
+  .scene { min-height: 430px; }
+  .orbit { --orbit-radius: min(33vw, 8.25rem); top: 40%; }
   .dragon-ball-button { height: 3.35rem; width: 3.35rem; }
   .dragon-ball { height: 2.3rem; width: 2.3rem; }
-  .character-art { bottom: 0; width: min(69vw, 19rem); }
+  .character-art { bottom: 1%; width: min(74vw, 19rem); }
   .scene-cloud-left { left: 1%; }
   .scene-cloud-right { right: 1%; }
   .scene-sky-line { left: 5%; width: 105%; }
-  .arrow-button { top: 0; }
+  .arrow-button { height: 2.85rem; top: 0; width: 2.85rem; }
+  .arrow-button-left { left: 4%; }
+  .arrow-button-right { right: 4%; }
   h1 { font-size: 2.2rem; }
-  .contact-cards { grid-template-columns: 1fr; }
+  .section-eyebrow { font-size: .66rem; }
+  .about-highlights { font-size: 1.15rem; }
+  .github-history { margin-top: 1.25rem; padding: .4rem; }
+  .project-list article,
+  .skill-groups div,
+  .contact-cards a,
+  .awards-interests > div { padding: .65rem .7rem; }
+}
+
+@media (max-width: 370px) {
+  .scene { min-height: 390px; }
+  .orbit { --orbit-radius: min(30vw, 7rem); top: 36%; }
+  .dragon-ball-button { height: 3rem; width: 3rem; }
+  .dragon-ball { height: 2.05rem; width: 2.05rem; }
+  .dragon-ball-stars { transform: scale(.85); }
+  .character-art { width: 78vw; }
 }
