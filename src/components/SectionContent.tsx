@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { PortfolioSection } from '../data/sections'
 import radar from '../../assets/images/dragonball_radar.png'
-import resume from '../../assets/Wajeeh_Alam-2026.pdf'
+import resume from '../../assets/Wajeeh_Alam-CV.pdf'
 
 type SectionContentProps = {
   section: PortfolioSection
