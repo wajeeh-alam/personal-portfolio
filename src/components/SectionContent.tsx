@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { PortfolioSection } from '../data/sections'
+import { sectionContent } from '../data/sectionContent'
 import radar from '../../assets/images/dragonball_radar.png'
 import resume from '../../assets/Wajeeh_Alam-CV.pdf'
 
@@ -95,19 +96,19 @@ export function SectionContent({ section }: SectionContentProps) {
                   animate={{ opacity: 1, y: 0 }}
                   initial={{ opacity: 0, y: 8 }}
                   transition={{ delay: isInitialLoad ? 1.3 : 0.12, duration: 0.58, ease: 'easeOut' }}
-                >UWaterloo CS [1A]</motion.span>
+                >{sectionContent.about.highlights[0]}</motion.span>
                 <motion.span
                   animate={{ opacity: 1, y: 0 }}
                   initial={{ opacity: 0, y: 8 }}
                   transition={{ delay: isInitialLoad ? 1.48 : 0.24, duration: 0.58, ease: 'easeOut' }}
-                >Founding Engineer @ Oro</motion.span>
+                >{sectionContent.about.highlights[1]}</motion.span>
                 <motion.span
                   animate={{ opacity: 1, y: 0 }}
                   initial={{ opacity: 0, y: 8 }}
                   transition={{ delay: isInitialLoad ? 1.66 : 0.36, duration: 0.58, ease: 'easeOut' }}
                 >
-                  1.8k+ followers (
-                  <a href="https://www.instagram.com/wajeehalam._/" rel="noreferrer" target="_blank">@wajeehalam._</a>
+                  {sectionContent.about.highlights[2]} (
+                  <a href="https://www.instagram.com/wajeehalam._/" rel="noreferrer" target="_blank">{sectionContent.about.socialHandle}</a>
                   )
                 </motion.span>
               </h1>
@@ -125,7 +126,7 @@ export function SectionContent({ section }: SectionContentProps) {
                   className="internship-message"
                   initial={{ opacity: 0, y: 8 }}
                   transition={{ delay: isInitialLoad ? 2.72 : 0.16, duration: 0.42, ease: 'easeOut' }}
-                >Seeking Summer 2027 Internship Opportunities</motion.p>
+                >{sectionContent.about.internshipMessage}</motion.p>
                 <motion.button
                   animate={{ opacity: 1, y: 0 }}
                   aria-label={`Like Wajeeh's portfolio. ${radarLikes ?? 'Loading'} likes so far.`}
@@ -145,64 +146,51 @@ export function SectionContent({ section }: SectionContentProps) {
           ) : section.id === 'experience' ? (
             <>
               <motion.p animate={{ opacity: 1, y: 0 }} className="section-eyebrow" initial={{ opacity: 0, y: -5 }} transition={{ duration: 0.55, ease: 'easeOut' }}>{section.eyebrow}</motion.p>
-              <motion.h1 animate={{ opacity: 1, y: 0 }} id={`${section.id}-title`} initial={{ opacity: 0, y: 7 }} transition={{ delay: 0.18, duration: 0.62, ease: 'easeOut' }}>Experience</motion.h1>
+              <motion.h1 animate={{ opacity: 1, y: 0 }} id={`${section.id}-title`} initial={{ opacity: 0, y: 7 }} transition={{ delay: 0.18, duration: 0.62, ease: 'easeOut' }}>{sectionContent.experience.title}</motion.h1>
               <motion.ol animate={{ opacity: 1, y: 0 }} className="experience-timeline" initial={{ opacity: 0, y: 8 }} transition={{ delay: 0.36, duration: 0.58, ease: 'easeOut' }}>
-                <li><time>JUL 2026 — PRESENT</time><strong>Founding Engineer · Oro</strong></li>
-                <li><time>JUN — AUG 2025 · JUN — AUG 2026</time><strong>Senior Coding Instructor · UofT</strong></li>
-                <li><time>DEC 2024 — MAR 2025</time><strong>Lead Web Developer · SproutHacks</strong></li>
-                <li><time>JUN 2024 — SEP 2024</time><strong>Machine Learning Intern · STEMAway</strong></li>
+                {sectionContent.experience.roles.map(([date, role]) => <li key={date}><time>{date}</time><strong>{role}</strong></li>)}
               </motion.ol>
-              <motion.a animate={{ opacity: 1, y: 0 }} className="resume-link" href={resume} initial={{ opacity: 0, y: 8 }} rel="noreferrer" target="_blank" transition={{ delay: 0.54, duration: 0.48, ease: 'easeOut' }}>View resume ↗</motion.a>
+              <motion.a animate={{ opacity: 1, y: 0 }} className="resume-link" href={resume} initial={{ opacity: 0, y: 8 }} rel="noreferrer" target="_blank" transition={{ delay: 0.54, duration: 0.48, ease: 'easeOut' }}>{sectionContent.experience.resumeLabel}</motion.a>
             </>
           ) : section.id === 'impact' ? (
             <>
               <motion.p animate={{ opacity: 1, y: 0 }} className="section-eyebrow" initial={{ opacity: 0, y: -5 }} transition={{ duration: 0.55, ease: 'easeOut' }}>{section.eyebrow}</motion.p>
-              <motion.h1 animate={{ opacity: 1, y: 0 }} className="impact-title" id={`${section.id}-title`} initial={{ opacity: 0, y: 7 }} transition={{ delay: 0.18, duration: 0.62, ease: 'easeOut' }}>Impact, measured in outcomes.</motion.h1>
+              <motion.h1 animate={{ opacity: 1, y: 0 }} className="impact-title" id={`${section.id}-title`} initial={{ opacity: 0, y: 7 }} transition={{ delay: 0.18, duration: 0.62, ease: 'easeOut' }}>{sectionContent.impact.title}</motion.h1>
               <motion.div animate={{ opacity: 1, y: 0 }} aria-label="Impact metrics" className="impact-metrics" initial={{ opacity: 0, y: 8 }} transition={{ delay: 0.36, duration: 0.52, ease: 'easeOut' }}>
-                <div><strong>300+</strong><span>students taught to code</span></div>
-                <div><strong>3</strong><span>software internships</span></div>
-                <div><strong>~$100K+</strong><span>in scholarships earned</span></div>
-                <div><strong>1,000+</strong><span>hours building with code</span></div>
+                {sectionContent.impact.metrics.map(([value, label]) => <div key={label}><strong>{value}</strong><span>{label}</span></div>)}
               </motion.div>
             </>
           ) : section.id === 'projects' ? (
             <>
               <motion.p animate={{ opacity: 1, y: 0 }} className="section-eyebrow" initial={{ opacity: 0, y: -5 }} transition={{ duration: 0.55, ease: 'easeOut' }}>{section.eyebrow}</motion.p>
-              <motion.h1 animate={{ opacity: 1, y: 0 }} className="compact-title" id={`${section.id}-title`} initial={{ opacity: 0, y: 7 }} transition={{ delay: 0.18, duration: 0.62, ease: 'easeOut' }}>Things I’m building.</motion.h1>
+              <motion.h1 animate={{ opacity: 1, y: 0 }} className="compact-title" id={`${section.id}-title`} initial={{ opacity: 0, y: 7 }} transition={{ delay: 0.18, duration: 0.62, ease: 'easeOut' }}>{sectionContent.projects.title}</motion.h1>
               <motion.div animate={{ opacity: 1, y: 0 }} className="project-list" initial={{ opacity: 0, y: 8 }} transition={{ delay: 0.36, duration: 0.58, ease: 'easeOut' }}>
-                <a aria-label="View Oro" href="https://www.buildingoro.ca/" rel="noreferrer" target="_blank"><article><h2>Oro <span>A.I. fashion stylist (2k+ downloads)</span><b aria-hidden="true">↗</b></h2><p>Personalized outfit discovery and styling with AI.</p><small>Python · Typescript · React Native · NodeJS · PostgreSQL · Supabase</small></article></a>
-                <a aria-label="View drawOff" href="https://drawoff.vercel.app/" rel="noreferrer" target="_blank"><article><h2>drawOff <span>scaling toward 1M+ users</span><b aria-hidden="true">↗</b></h2><p>A real-time multiplayer drawing game with AI judging and live spectator voting.</p><small>React · TypeScript · Tailwind · Node.js · Socket.io</small></article></a>
-                <a aria-label="View StudyQuest on GitHub" href="https://github.com/wajeeh-alam/studyquest" rel="noreferrer" target="_blank"><article><h2>StudyQuest <span>iOS</span><b aria-hidden="true">↗</b></h2><p>A gamified study companion designed for focused learning.</p><small>React Native · Expo · Firebase</small></article></a>
+                {sectionContent.projects.items.map((project) => <a aria-label={`View ${project.name}`} href={project.url} key={project.name} rel="noreferrer" target="_blank"><article><h2>{project.name} <span>{project.detail}</span><b aria-hidden="true">↗</b></h2><p>{project.description}</p><small>{project.technologies}</small></article></a>)}
               </motion.div>
             </>
           ) : section.id === 'skills' ? (
             <>
               <motion.p animate={{ opacity: 1, y: 0 }} className="section-eyebrow" initial={{ opacity: 0, y: -5 }} transition={{ duration: 0.55, ease: 'easeOut' }}>{section.eyebrow}</motion.p>
-              <motion.h1 animate={{ opacity: 1, y: 0 }} className="compact-title" id={`${section.id}-title`} initial={{ opacity: 0, y: 7 }} transition={{ delay: 0.18, duration: 0.62, ease: 'easeOut' }}>My toolkit.</motion.h1>
+              <motion.h1 animate={{ opacity: 1, y: 0 }} className="compact-title" id={`${section.id}-title`} initial={{ opacity: 0, y: 7 }} transition={{ delay: 0.18, duration: 0.62, ease: 'easeOut' }}>{sectionContent.skills.title}</motion.h1>
               <motion.div animate={{ opacity: 1, y: 0 }} className="skill-groups" initial={{ opacity: 0, y: 8 }} transition={{ delay: 0.36, duration: 0.58, ease: 'easeOut' }}>
-                <div><h2>Languages</h2><p>TypeScript · JavaScript · HTML/CSS · Python · Lua · C++</p></div>
-                <div><h2>Frameworks & data</h2><p>React · React Native · Node.js · Express · SQL/PostgreSQL · Redis · MongoDB · Firebase</p></div>
-                <div><h2>Workflow</h2><p>Git · GitHub · CI/CD pipelines</p></div>
+                {sectionContent.skills.groups.map(([name, tools]) => <div key={name}><h2>{name}</h2><p>{tools}</p></div>)}
               </motion.div>
             </>
           ) : section.id === 'contact' ? (
             <>
               <motion.p animate={{ opacity: 1, y: 0 }} className="section-eyebrow" initial={{ opacity: 0, y: -5 }} transition={{ duration: 0.55, ease: 'easeOut' }}>{section.eyebrow}</motion.p>
-              <motion.h1 animate={{ opacity: 1, y: 0 }} className="compact-title" id={`${section.id}-title`} initial={{ opacity: 0, y: 7 }} transition={{ delay: 0.18, duration: 0.62, ease: 'easeOut' }}>Let’s make something memorable.</motion.h1>
+              <motion.h1 animate={{ opacity: 1, y: 0 }} className="compact-title" id={`${section.id}-title`} initial={{ opacity: 0, y: 7 }} transition={{ delay: 0.18, duration: 0.62, ease: 'easeOut' }}>{sectionContent.contact.title}</motion.h1>
               <motion.nav animate={{ opacity: 1, y: 0 }} aria-label="Contact links" className="contact-cards" initial={{ opacity: 0, y: 8 }} transition={{ delay: 0.36, duration: 0.58, ease: 'easeOut' }}>
-                <a href="https://www.linkedin.com/in/wajeeh-alam" rel="noreferrer" target="_blank"><span>LinkedIn</span><strong>linkedin.com/in/wajeeh-alam</strong></a>
-                <a href="tel:+16472857970"><span>Phone</span><strong>+1 (647) 285-7970</strong></a>
-                <a href="mailto:w5alam@uwaterloo.ca"><span>Email</span><strong>w5alam@uwaterloo.ca</strong></a>
-                <a href="https://www.instagram.com/wajeehalam._/" rel="noreferrer" target="_blank"><span>Instagram</span><strong>@wajeehalam._</strong></a>
+                {sectionContent.contact.links.map(([label, value, url]) => <a href={url} key={label} rel={url.startsWith('http') ? 'noreferrer' : undefined} target={url.startsWith('http') ? '_blank' : undefined}><span>{label}</span><strong>{value}</strong></a>)}
               </motion.nav>
             </>
           ) : section.id === 'awards-interests' ? (
             <>
               <motion.p animate={{ opacity: 1, y: 0 }} className="section-eyebrow" initial={{ opacity: 0, y: -5 }} transition={{ duration: 0.55, ease: 'easeOut' }}>{section.eyebrow}</motion.p>
-              <motion.h1 animate={{ opacity: 1, y: 0 }} className="compact-title" id={`${section.id}-title`} initial={{ opacity: 0, y: 7 }} transition={{ delay: 0.18, duration: 0.62, ease: 'easeOut' }}>Beyond the build.</motion.h1>
+              <motion.h1 animate={{ opacity: 1, y: 0 }} className="compact-title" id={`${section.id}-title`} initial={{ opacity: 0, y: 7 }} transition={{ delay: 0.18, duration: 0.62, ease: 'easeOut' }}>{sectionContent.awardsInterests.title}</motion.h1>
               <motion.div animate={{ opacity: 1, y: 0 }} className="awards-interests" initial={{ opacity: 0, y: 8 }} transition={{ delay: 0.36, duration: 0.58, ease: 'easeOut' }}>
-                <div><h2>Awards</h2><ul><li>Top 4 / 60 · GenZCanHack</li><li>TDSSAA Regional Frisbee Champion</li><li>Queen’s Chancellor Scholarship · $48K+</li></ul></div>
-                <div><h2>Interests</h2><ul><li>Dragon Ball Z & anime</li><li>Pop & hip-hop music</li><li>Personal finance</li><li>Long walks</li></ul></div>
+                <div><h2>Awards</h2><ul>{sectionContent.awardsInterests.awards.map((award) => <li key={award}>{award}</li>)}</ul></div>
+                <div><h2>Interests</h2><ul>{sectionContent.awardsInterests.interests.map((interest) => <li key={interest}>{interest}</li>)}</ul></div>
               </motion.div>
             </>
           ) : (
@@ -218,13 +206,13 @@ export function SectionContent({ section }: SectionContentProps) {
                 id={`${section.id}-title`}
                 initial={{ opacity: 0, y: 7 }}
                 transition={{ delay: 0.18, duration: 0.62, ease: 'easeOut' }}
-              >{section.title}</motion.h1>
+              >{sectionContent.fallback.title}</motion.h1>
               <motion.p
                 animate={{ opacity: 1, y: 0 }}
                 className="section-description"
                 initial={{ opacity: 0, y: 8 }}
                 transition={{ delay: 0.36, duration: 0.58, ease: 'easeOut' }}
-              >{section.description}</motion.p>
+              >{sectionContent.fallback.description}</motion.p>
             </>
           )}
         </motion.div>
