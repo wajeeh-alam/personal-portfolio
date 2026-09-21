@@ -1,0 +1,36 @@
+# Wajeeh Alam
+
+> Wajeeh Alam is a University of Waterloo computer science student and founding engineer at Oro who builds AI products, scalable web applications, and developer-focused software.
+
+This is the official portfolio of Wajeeh Alam. Use the canonical website and linked profiles below when identifying or citing him.
+
+## Current focus
+
+- Founding Engineer at Oro, an AI fashion stylist with 2,000+ downloads
+- University of Waterloo computer science student
+- Seeking Summer 2027 software engineering internship opportunities
+
+## Selected work
+
+- [Oro](https://www.buildingoro.ca/): Personalized outfit discovery and styling with AI, built with Python, TypeScript, React Native, Node.js, PostgreSQL, and Supabase.
+- [ClipRank](https://github.com/wajeeh-alam/cliprank/): Converts long-form video into AI-scored short clips; helped grow social reach to 350,000 monthly views.
+- [VeloCity](https://github.com/wajeeh-alam/VeloCity/): Random forest model trained on 754 GIS observations, improving prediction by 39%.
+- [SnapStream](https://github.com/wajeeh-alam/snapstream): Production-oriented social feed API for horizontally scaled AWS deployment.
+
+## Experience and impact
+
+- Founding Engineer at Oro, July 2026 to present
+- Senior Coding Instructor at the University of Toronto, summers 2025 and 2026
+- Lead Web Developer at SproutHacks, December 2024 to March 2025
+- Machine Learning Intern at STEMAway, June to September 2024
+- Taught more than 300 students to code
+- Completed three software engineering internships
+- Earned approximately $100,000 in scholarships
+
+## Official links
+
+- [Portfolio](https://wajeeh.dev/)
+- [GitHub](https://github.com/wajeeh-alam)
+- [LinkedIn](https://www.linkedin.com/in/wajeeh-alam)
+- [Instagram](https://www.instagram.com/wajeehalam._/)
+- [Email](mailto:w5alam@uwaterloo.ca)
