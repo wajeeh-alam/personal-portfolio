@@ -15,7 +15,7 @@ export function Orbit({ activeIndex, isNavigating, onSelect, sections }: OrbitPr
   const [rotationSteps, setRotationSteps] = useState(0)
   const prefersReducedMotion = useReducedMotion()
   const stepAngle = 360 / sections.length
-  const transitionDuration = prefersReducedMotion ? 0 : 0.52
+  const transitionDuration = prefersReducedMotion ? 0 : 0.42
 
   useLayoutEffect(() => {
     const previousIndex = previousIndexRef.current
@@ -41,7 +41,8 @@ export function Orbit({ activeIndex, isNavigating, onSelect, sections }: OrbitPr
       <motion.div
         animate={{ rotate: wheelRotation }}
         className="orbit-wheel"
-        transition={{ duration: transitionDuration, ease: [0.2, 0.75, 0.2, 1] }}
+        style={{ transform: 'translateZ(0)' }}
+        transition={{ duration: transitionDuration, ease: [0.22, 0.8, 0.25, 1] }}
       >
         {sections.map((section, index) => {
           const angle = -90 + index * stepAngle

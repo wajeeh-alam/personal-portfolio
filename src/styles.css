@@ -265,6 +265,8 @@ h1 {
 .orbit-wheel {
   inset: 0;
   position: absolute;
+  backface-visibility: hidden;
+  transform: translateZ(0);
   will-change: transform;
 }
 
@@ -291,9 +293,11 @@ h1 {
 }
 
 .ball-upright {
+  backface-visibility: hidden;
   display: block;
   height: 100%;
   position: relative;
+  transform: translateZ(0);
   width: 100%;
   will-change: transform;
 }
