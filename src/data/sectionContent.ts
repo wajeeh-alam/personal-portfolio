@@ -4,16 +4,16 @@ export const sectionContent = {
     description: 'This section is not available.',
   },
   about: {
-    highlights: ['UWaterloo CS [1A]', 'Founding Engineer @ Oro', '2k+ followers'],
+    highlights: ['UWaterloo CS [1A]', 'Software Engineer @ Oro', '2.1k followers'],
     socialHandle: '@wajeehalam._',
     internshipMessage: 'Seeking Summer 2027 Internship Opportunities',
   },
   experience: {
     title: 'Experience',
     roles: [
-      ['JUL 2026 — PRESENT', 'Founding Engineer · Oro'],
-      ['JUN — AUG 2025 · JUN — AUG 2026', 'Senior Coding Instructor · UofT'],
-      ['DEC 2024 — MAR 2025', 'Lead Web Developer · SproutHacks'],
+      ['JUL 2026 — PRESENT', 'Software Engineer · Oro'],
+      ['DEC 2024 — MAR 2025', 'Full Stack Developer · SproutHacks'],
+      ['JUN 2025 — AUG 2026', 'Coding Instructor · University of Toronto'],
       ['JUN 2024 — SEP 2024', 'Machine Learning Intern · STEMAway'],
     ],
     resumeLabel: 'View resume ↗',
@@ -73,7 +73,7 @@ export const sectionContent = {
     links: [
       ['LinkedIn', 'linkedin.com/in/wajeeh-alam', 'https://www.linkedin.com/in/wajeeh-alam'],
       ['Phone', '+1 (647) 285-7970', 'tel:+16472857970'],
-      ['Email', 'w5alam@uwaterloo.ca', 'mailto:w5alam@uwaterloo.ca'],
+      ['Email', 'wajeeh.alam@uwaterloo.ca', 'mailto:wajeeh.alam@uwaterloo.ca'],
       ['Instagram', '@wajeehalam._', 'https://www.instagram.com/wajeehalam._/'],
     ],
   },

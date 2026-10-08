@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import type { PortfolioSection } from '../data/sections'
 import { sectionContent } from '../data/sectionContent'
@@ -9,13 +9,19 @@ type SectionContentProps = {
   section: PortfolioSection
 }
 
+const getSupabaseConfig = () => {
+  const url = import.meta.env.VITE_SUPABASE_URL?.replace(/\/$/, '')
+  const key = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ?? import.meta.env.VITE_SUPABASE_ANON_KEY
+
+  return url && key ? { key, url } : null
+}
+
 export function SectionContent({ section }: SectionContentProps) {
   const [isInitialLoad, setIsInitialLoad] = useState(true)
   const [radarLikes, setRadarLikes] = useState<number | null>(null)
   const [likeError, setLikeError] = useState('')
 
-  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-  const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
+  const supabase = useMemo(getSupabaseConfig, [])
 
   useEffect(() => {
     const timer = window.setTimeout(() => setIsInitialLoad(false), 1850)
@@ -23,14 +29,14 @@ export function SectionContent({ section }: SectionContentProps) {
   }, [])
 
   useEffect(() => {
-    if (!supabaseUrl || !supabaseKey) return
+    if (!supabase) return
 
     const loadLikes = async () => {
       try {
-        const response = await fetch(`${supabaseUrl}/rest/v1/page_likes?slug=eq.portfolio&select=like_count&limit=1`, {
+        const response = await fetch(`${supabase.url}/rest/v1/page_likes?slug=eq.portfolio&select=like_count&limit=1`, {
           headers: {
-            apikey: supabaseKey,
-            Authorization: `Bearer ${supabaseKey}`,
+            apikey: supabase.key,
+            Authorization: `Bearer ${supabase.key}`,
           },
         })
         if (!response.ok) return
@@ -43,21 +49,21 @@ export function SectionContent({ section }: SectionContentProps) {
     }
 
     void loadLikes()
-  }, [supabaseKey, supabaseUrl])
+  }, [supabase])
 
   const addRadarLike = async () => {
-    if (!supabaseUrl || !supabaseKey) {
-      setLikeError('Likes are not connected yet. Restart the local dev server and try again.')
+    if (!supabase) {
+      setLikeError('Likes are being set up. Please try again shortly.')
       return
     }
 
     setLikeError('')
     try {
-      const response = await fetch(`${supabaseUrl}/rest/v1/rpc/increment_portfolio_likes`, {
+      const response = await fetch(`${supabase.url}/rest/v1/rpc/increment_portfolio_likes`, {
         body: JSON.stringify({}),
         headers: {
-          apikey: supabaseKey,
-          Authorization: `Bearer ${supabaseKey}`,
+          apikey: supabase.key,
+          Authorization: `Bearer ${supabase.key}`,
           'Content-Type': 'application/json',
         },
         method: 'POST',
