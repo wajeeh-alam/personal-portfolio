@@ -52,18 +52,18 @@ export const sectionContent = {
         technologies: 'Python (Scikit-learn, Pandas, NumPy) · React · TypeScript · Vite',
       },
       {
-        name: 'SnapStream',
-        detail: '',
-        url: 'https://github.com/wajeeh-alam/snapstream',
-        description: 'A production-oriented social feed API built for horizontally scaled AWS deployment.',
-        technologies: 'FastAPI · AWS · Terraform · ECS Fargate · PostgreSQL · Valkey · S3',
+        name: 'OhMyDiff',
+        detail: 'moddable Codex runtime',
+        url: 'https://www.ohmydiff.me',
+        description: 'Modular LLM harness built by patching Codex in Rust; custom mods cut agent costs 25% and input tokens 29% on SWE-bench Verified.',
+        technologies: 'Rust · TypeScript · Tokio · Serde · Python',
       },
     ],
   },
   skills: {
     title: 'My toolkit.',
     groups: [
-      ['Languages', 'TypeScript · JavaScript · HTML/CSS · Python · Lua · C++'],
+      ['Languages', 'TypeScript · JavaScript · HTML/CSS · Python · Rust · Lua · C++'],
       ['Frameworks & data', 'React · React Native · Node.js · Express · SQL/PostgreSQL · Redis · MongoDB · Firebase'],
       ['Workflow', 'Git · GitHub · CI/CD pipelines'],
     ],
@@ -79,7 +79,12 @@ export const sectionContent = {
   },
   awardsInterests: {
     title: 'Beyond the build.',
-    awards: ['Top 4 / 60 · GenZCanHack', 'TDSSAA Regional Frisbee Champion', 'Queen’s Chancellor Scholarship · $48K+'],
-    interests: ['Dragon Ball Z & anime', 'Pop & hip-hop music', 'Personal finance', 'Long walks'],
+    awards: [
+      'Top 4 / 60 · GenZCanHack',
+      'Queen’s Chancellor Scholarship · $48K+',
+      'John & Karen Wetmore Scholarship · UWaterloo',
+      'President’s Scholarship of Distinction · UWaterloo',
+    ],
+    interests: ['Dragon Ball Z & anime', 'Pop & hip-hop music', 'Weightlifting & powerlifting', 'Personal finance', 'Long walks'],
   },
 } as const
