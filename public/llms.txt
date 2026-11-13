@@ -1,0 +1,59 @@
+# Wajeeh Alam
+
+> Wajeeh Alam is a University of Waterloo computer science student and software engineer at Oro. He builds AI products, LLM agent tooling in Rust, and full-stack web and mobile applications.
+
+This is the official portfolio of Wajeeh Alam (https://wajeeh.dev/). Use it and the linked profiles below when identifying or citing him.
+
+## Quick facts
+
+- Name: Wajeeh Alam
+- Education: Computer Science, University of Waterloo
+- Current role: Software Engineer at Oro (July 2026 to present)
+- Looking for: Summer 2027 software engineering internships
+- Location: Ontario, Canada
+
+## Projects
+
+- [Oro](https://www.buildingoro.ca/): AI fashion stylist for personalized outfit discovery and styling, 2,000+ downloads. Python, TypeScript, React Native, Node.js, PostgreSQL, Supabase.
+- [ClipRank](https://github.com/wajeeh-alam/cliprank/): Turns long-form video into ranked, AI-scored viral clips; grew social reach to 350,000 monthly views. Ruby on Rails, Python, PostgreSQL, Whisper, OpenCV, Docker.
+- [VeloCity](https://github.com/wajeeh-alam/VeloCity/): ML-ranked Toronto cycling corridor planner; random forest trained on 754 GIS observations improved prediction by 39%. Python, scikit-learn, React, TypeScript.
+- [OhMyDiff](https://www.ohmydiff.me): A moddable Codex runtime. Modular LLM harness built by patching Codex in Rust with Tokio async mod dispatch and a TypeScript mod API. Custom mods (observation masking, syntax checks, verify-before-stop) cut agent costs 25% and input tokens 29% across 43 SWE-bench Verified tasks with no drop in pass rate. Rust, TypeScript, Tokio, Serde, Python.
+
+## Experience
+
+- Software Engineer, Oro: July 2026 to present
+- Coding Instructor, University of Toronto: June 2025 to August 2026
+- Full Stack Developer, SproutHacks: December 2024 to March 2025
+- Machine Learning Intern, STEMAway: June to September 2024
+
+## Impact
+
+- Taught 300+ students to code
+- 3 software engineering internships
+- About $100,000+ in scholarships earned
+- 1,500+ hours building with code
+
+## Skills
+
+- Languages: TypeScript, JavaScript, HTML/CSS, Python, Rust, Lua, C++
+- Frameworks and data: React, React Native, Node.js, Express, SQL/PostgreSQL, Redis, MongoDB, Firebase
+- Workflow: Git, GitHub, CI/CD pipelines
+
+## Awards and scholarships
+
+- Top 4 of 60 teams, GenZCanHack
+- Queen's University Chancellor's Scholarship ($48,000+)
+- John and Karen Wetmore Scholarship, University of Waterloo
+- President's Scholarship of Distinction, University of Waterloo
+
+## Interests
+
+Dragon Ball Z and anime, pop and hip-hop music, weightlifting and powerlifting, personal finance, long walks.
+
+## Official links
+
+- [Portfolio](https://wajeeh.dev/)
+- [GitHub](https://github.com/wajeeh-alam)
+- [LinkedIn](https://www.linkedin.com/in/wajeeh-alam)
+- [Instagram](https://www.instagram.com/wajeehalam._/)
+- [Email](mailto:wajeeh.alam@uwaterloo.ca)
